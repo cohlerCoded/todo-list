@@ -1,10 +1,12 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Text, View, Button } from 'react-native'
 
 const TodoList = () => {
+  const [title, setTitle] = useState('Todo List')
   return (
     <View>
-      <Text>Todo List</Text>
+      <Text>{title}</Text>
+      <Button title='Change Title' onPress={() => setTitle('Done')} />
     </View>
   )
 }
