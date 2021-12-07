@@ -5,8 +5,8 @@ import Task from './Task'
 const TodoList = () => {
   const [title, setTitle] = useState('Todo List')
   return (
-    <View>
-      <Text>{title}</Text>
+    <View style={{ width: '80%', marginBottom: 60 }}>
+      <Text style={[styles.textSize, styles.textAlign]}>{title}</Text>
       <Task name='Clean' />
       <Task name='Cook' />
       <Task name='Code' />
@@ -17,4 +17,12 @@ const TodoList = () => {
 
 export default TodoList
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  textSize: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  textAlign: {
+    alignSelf: 'center',
+  },
+})
