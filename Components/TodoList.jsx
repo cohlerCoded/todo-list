@@ -9,20 +9,21 @@ import {
 } from 'react-native'
 import Task from './Task'
 
-const tasks = [
-  <Task name='Clean' key={0} />,
-  <Task name='Cook' key={1} />,
-  <Task name='Code' key={2} />,
-]
 const TodoList = () => {
   const [title, setTitle] = useState('Todo List')
   const [text, setText] = useState('')
+  const [taskList, setTaskList] = useState([
+    <Task name='Clean' key={0} />,
+    <Task name='Cook' key={1} />,
+    <Task name='Code' key={2} />,
+  ])
   return (
     <View style={{ width: '80%', marginBottom: 60 }}>
       <Text style={[styles.textSize, styles.textAlign]}>{title}</Text>
-      <ScrollView style={{ marginBottom: 60 }}></ScrollView>
       <View>
-        {tasks}
+        <ScrollView style={{ height: '50%', marginBottom: 60 }}>
+          {taskList}
+        </ScrollView>
         <TextInput
           style={styles.textInput}
           onChangeText={(text) => setText(text)}
@@ -30,7 +31,10 @@ const TodoList = () => {
         <Button
           title='Change Title'
           onPress={() =>
-            tasks.push(<Task name='Code' key={tasks.length - 1} />)
+            setTaskList([
+              ...taskList,
+              <Task name={text} key={taskList.length + 1} />,
+            ])
           }
         />
       </View>
