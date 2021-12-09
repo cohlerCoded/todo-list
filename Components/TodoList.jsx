@@ -9,19 +9,30 @@ import {
 } from 'react-native'
 import Task from './Task'
 
+const tasks = [
+  <Task name='Clean' key={0} />,
+  <Task name='Cook' key={1} />,
+  <Task name='Code' key={2} />,
+]
 const TodoList = () => {
   const [title, setTitle] = useState('Todo List')
+  const [text, setText] = useState('')
   return (
     <View style={{ width: '80%', marginBottom: 60 }}>
       <Text style={[styles.textSize, styles.textAlign]}>{title}</Text>
-      <ScrollView style={{ marginBottom: 60 }}>
-        <Task name='Clean' />
-        <Task name='Cook' />
-        <Task name='Code' />
-      </ScrollView>
+      <ScrollView style={{ marginBottom: 60 }}></ScrollView>
       <View>
-        <TextInput style={styles.textInput} />
-        <Button title='Change Title' onPress={() => setTitle('Done')} />
+        {tasks}
+        <TextInput
+          style={styles.textInput}
+          onChangeText={(text) => setText(text)}
+        />
+        <Button
+          title='Change Title'
+          onPress={() =>
+            tasks.push(<Task name='Code' key={tasks.length - 1} />)
+          }
+        />
       </View>
     </View>
   )
