@@ -18,24 +18,24 @@ const TodoList = () => {
     <Task name='Code' key={2} />,
   ])
   return (
-    <View style={{ width: '80%', marginBottom: 60 }}>
+    <View style={{ width: '80%', marginBottom: 10 }}>
       <Text style={[styles.textSize, styles.textAlign]}>{title}</Text>
       <View>
-        <ScrollView style={{ height: '50%', marginBottom: 60 }}>
+        <ScrollView style={{ height: '50%', marginBottom: 20 }}>
           {taskList}
         </ScrollView>
         <TextInput
           style={styles.textInput}
           onChangeText={(text) => setText(text)}
+          value={text}
         />
         <Button
-          title='Change Title'
-          onPress={() =>
-            setTaskList([
-              ...taskList,
-              <Task name={text} key={taskList.length + 1} />,
-            ])
-          }
+          title='Add Task'
+          onPress={() => {
+            const key = taskList.length
+            setTaskList([...taskList, <Task name={text} key={key} />])
+            setText('')
+          }}
         />
       </View>
     </View>
