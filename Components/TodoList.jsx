@@ -13,14 +13,21 @@ const TodoList = () => {
   const [title, setTitle] = useState('Todo List')
   const [text, setText] = useState('')
   const [taskList, setTaskList] = useState([
-    <Task name='Clean' key={0} />,
-    <Task name='Cook' key={1} />,
-    <Task name='Code' key={2} />,
+    // <Task name='Clean' key={0} />,
+    // <Task name='Cook' key={1} />,
+    // <Task name='Code' key={2} />,
   ])
+
+  const deleteTask = (key) => {
+    setTaskList(taskList.filter((task, i) => i !== key))
+  }
 
   const addTask = () => {
     const key = taskList.length
-    setTaskList([...taskList, <Task name={text} key={key} />])
+    setTaskList([
+      ...taskList,
+      <Task name={text} key={key} deleteTask={deleteTask} />,
+    ])
     setText('')
   }
 
