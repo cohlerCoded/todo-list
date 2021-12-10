@@ -17,6 +17,13 @@ const TodoList = () => {
     <Task name='Cook' key={1} />,
     <Task name='Code' key={2} />,
   ])
+
+  const addTask = () => {
+    const key = taskList.length
+    setTaskList([...taskList, <Task name={text} key={key} />])
+    setText('')
+  }
+
   return (
     <View style={{ width: '80%', marginBottom: 10 }}>
       <Text style={[styles.textSize, styles.textAlign]}>{title}</Text>
@@ -29,14 +36,7 @@ const TodoList = () => {
           onChangeText={(text) => setText(text)}
           value={text}
         />
-        <Button
-          title='Add Task'
-          onPress={() => {
-            const key = taskList.length
-            setTaskList([...taskList, <Task name={text} key={key} />])
-            setText('')
-          }}
-        />
+        <Button title='Add Task' onPress={addTask} />
       </View>
     </View>
   )
