@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
-const Task = ({ name, key, deleteTask }) => {
+const Task = ({ name, deleteTask }) => {
   return (
     <View style={[styles.item, { margin: 8, padding: 8 }]}>
       <Text>{name}</Text>
@@ -12,9 +12,7 @@ const Task = ({ name, key, deleteTask }) => {
           right: 0,
           marginHorizontal: 20,
         }}
-        onPress={() => {
-          deleteTask(key)
-        }}
+        onPress={() => deleteTask(name)}
       >
         <FontAwesome name='trash' size={24} color='black' />
       </TouchableOpacity>

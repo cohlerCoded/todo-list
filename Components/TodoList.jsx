@@ -12,23 +12,18 @@ import Task from './Task'
 const TodoList = () => {
   const [title, setTitle] = useState('Todo List')
   const [text, setText] = useState('')
-  const [taskList, setTaskList] = useState([
-    // <Task name='Clean' key={0} />,
-    // <Task name='Cook' key={1} />,
-    // <Task name='Code' key={2} />,
-  ])
-
-  const deleteTask = (key) => {
-    setTaskList(taskList.filter((task, i) => i !== key))
-  }
-
+  const [taskList, setTaskList] = useState([])
   const addTask = () => {
     const key = taskList.length
-    setTaskList([
-      ...taskList,
-      <Task name={text} key={key} deleteTask={deleteTask} />,
-    ])
+    const updatedList = taskList
+    updatedList.push(text)
+    setTaskList(updatedList)
     setText('')
+  }
+
+  const deleteTask = (name) => {
+    const updatedList = taskList.filter((task) => task !== name)
+    setTaskList(updatedList)
   }
 
   return (
@@ -36,7 +31,9 @@ const TodoList = () => {
       <Text style={[styles.textSize, styles.textAlign]}>{title}</Text>
       <View>
         <ScrollView style={{ height: '50%', marginBottom: 20 }}>
-          {taskList}
+          {taskList.map((task, i) => (
+            <Task name={task} key={i} deleteTask={deleteTask} />
+          ))}
         </ScrollView>
         <TextInput
           style={styles.textInput}
